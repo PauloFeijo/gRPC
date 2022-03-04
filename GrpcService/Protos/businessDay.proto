@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceBusinessDay";
+
+package businessDay;
+
+service BusinessDay {
+  rpc GetNow (EmptyRequest) returns (TimeReply);
+}
+
+message EmptyRequest { }
+
+message TimeReply {
+  string time = 1;
+}

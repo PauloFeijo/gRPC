@@ -1,0 +1,30 @@
+https://www.youtube.com/watch?v=AxYEyvX3xxI
+https://www.youtube.com/watch?v=QyyMjF764mo
+https://www.youtube.com/watch?v=F4t3ZBVMlvo
+https://www.youtube.com/watch?v=mjrjulWtxmo
+https://www.youtube.com/watch?v=U8kTRj1wfPc
+https://developers.google.com/protocol-buffers
+https://grpc.io/docs/languages/csharp/quickstart/
+
+
+Server:
+Criar um projeto Grpc server
+  Já irá criar um arquivo proto (Protos/greet.proto)
+  Já irá criar a implementação do método (GreeterService.cs)
+  Já irá disponibilizar o endpoint (program.cs app.MapGrpcService<GreeterService>();)
+  E adicionar o itemGroup protobuf no csproj
+  
+
+Client:
+Criar um aplicativo console, instalar os pacotes abaixo
+  Grpc.Net.Client
+  Google.Protobuf
+  Grpc.Tools
+Copiar o arquivo Protos/greet.proto do server para a pasta Protos no client
+Adicionar referencia do protobuff no csproj, copiar do server e alterar a prop "GrpcServices" para "Client"
+Buildar o client
+para se comunicar com o server:
+   using var channel = GrpcChannel.ForAddress("https://localhost:7219");
+   var client = new Greeter.GreeterClient(channel);
+   var reply = await client.SayHelloAsync(new HelloRequest() { Name = "MyName" });
+   var greetings = reply.Message;
